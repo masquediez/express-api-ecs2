@@ -1,0 +1,14 @@
+name: example-workflow
+
+on: push
+
+jobs:
+ copy: 
+  runs-on: ubuntu-latest
+  steps:
+  - name: checkout
+    uses: actions/checkout@v4
+  - name: ls
+    run: 
+     ls
+ 
