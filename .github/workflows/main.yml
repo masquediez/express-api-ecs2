@@ -30,4 +30,9 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v2
     # TODO: Docker Image bauen und pushen
     - name: Docker build, tag, push
-      run: echo "Hello Docker"
+      run: |
+          aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 680011609969.dkr.ecr.eu-central-1.amazonaws.com
+          docker build -t test-actions .
+          docker tag test-actions:latest 680011609969.dkr.ecr.eu-central-1.amazonaws.com/test-actions:latest
+          docker push 680011609969.dkr.ecr.eu-central-1.amazonaws.com/test-actions:latest
+          echo "Hello Docker"
